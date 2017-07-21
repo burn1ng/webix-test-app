@@ -1,0 +1,5 @@
+.idea/
+libs/
+deploy/
+node_modules/
+config/db.js
