@@ -2,6 +2,9 @@ var debug_export = false;
 
 var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
+var reload = browserSync.reload;
+var watch = require('gulp-watch');
+
 var glob = require('glob');
 
 var _if = require('gulp-if');
@@ -105,3 +108,12 @@ gulp.task('browser-sync', function() {
     	logPrefix: "YO_Browser-sync: "
     });
 });
+
+gulp.task('watch',function(){
+  gulp.watch (["*.*"], function() {
+  	reload({ stream: true })
+  });
+});
+
+
+gulp.task('default', ['browser-sync', 'watch']);
