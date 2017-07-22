@@ -15,14 +15,13 @@ module.exports = function(appExpress, db) {
             }
         });
 
-        // console.log(req.body)
-        // res.send('Hello')
     });
 
     // READ route
     appExpress.get('/notes/:id', (req, res) => {
 
         const id = req.params.id;
+
         //MongoDB require ID not as String, but in sprecial [ObjectID] object
         const details = { '_id': new ObjectID(id) };
 
@@ -34,6 +33,19 @@ module.exports = function(appExpress, db) {
             }
         });
     });
+
+    //READ route
+    appExpress.get('/get-notes', (req, res) => {
+
+
+        const id = req.params.id;
+
+        var cursor = db.collection('notes').find().toArray(function(err, docs) {
+            res.send(docs);
+        });
+    });
+
+
 
     // UPDATE route (PUT = read + create logic)
     appExpress.put('/notes/:id', (req, res) => {

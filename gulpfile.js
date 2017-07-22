@@ -1,10 +1,6 @@
 var debug_export = false;
 
 var gulp = require('gulp');
-var browserSync = require('browser-sync').create();
-// var reload = browserSync.reload;
-// var watch = require('gulp-watch');
-
 var glob = require('glob');
 
 var _if = require('gulp-if');
@@ -96,18 +92,4 @@ gulp.task('lint', function() {
         .pipe(jshint())
         .pipe(jshint.reporter('default'))
         .pipe(jshint.reporter('fail'));
-});
-
-
-// static server for live reloading 
-gulp.task('browser-sync', function() {
-    browserSync.init({
-        server: {
-            baseDir: "./",
-        },
-        host: 'localhost',
-        port: 3000,
-        files: ['views/*.js', 'models/*.js', 'app.js'], //watch only these files, otherwise nodemon restart server app
-        logPrefix: "YO_Browser-sync: "
-    });
 });
