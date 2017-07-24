@@ -1,7 +1,6 @@
 define([],function(){
 
 	var collection = new webix.DataCollection({
-
 		// data:[
 		// { id:1, title:"The Shawshank Redemption", year:1994, votes:678790, rating:9.2, rank:1},
 		// { id:2, title:"The Godfather", year:1972, votes:511495, rating:9.2, rank:2},
@@ -10,9 +9,8 @@ define([],function(){
 		// { id:5, title:"My Fair Lady", year:1964, votes:533848, rating:8.9, rank:5},
 		// { id:6, title:"12 Angry Men", year:1957, votes:164558, rating:8.9, rank:6}
 		// ]
-
 		url:"rest->/get-notes", 
-        save:"rest->/records.php"
+        save:"rest->/update-note/"
 	});
 
 	return {

@@ -3,9 +3,9 @@ var ObjectID = require('mongodb').ObjectID;
 module.exports = function(appExpress, db) {
 
     // CREATE route
-    appExpress.post('/notes', (req, res) => {
+    appExpress.post('/new-note', (req, res) => {
 
-        const note = { text: req.body.body, title: req.body.title };
+        const note = { text: req.body.text, title: req.body.title };
 
         db.collection('notes').insert(note, (err, result) => {
             if (err) {
@@ -14,7 +14,6 @@ module.exports = function(appExpress, db) {
                 res.send(result.ops[0]);
             }
         });
-
     });
 
     // READ route
@@ -34,24 +33,35 @@ module.exports = function(appExpress, db) {
         });
     });
 
-    //READ route
+    //READ route for all notes
     appExpress.get('/get-notes', (req, res) => {
-
-
-        const id = req.params.id;
+        //const id = req.params.id;
 
         var cursor = db.collection('notes').find().toArray(function(err, docs) {
             res.send(docs);
         });
     });
 
+    // UPDATE route (PUT = read + create logic) for 1 exact note
+    // appExpress.put('/update-note/:id', (req, res) => {
+    //     const id = req.params.id;
+    //     const details = { '_id': new ObjectID(id) };
+    //     const note = { text: req.body.body, title: req.body.title };
 
+    //     db.collection('notes').update(details, note, (err, result) => {
+    //         if (err) {
+    //             res.send({ 'error': 'An error has occurred' });
+    //         } else {
+    //             res.send(note);
+    //         }
+    //     });
+    // });
+    appExpress.put('/update-note/:id', (req, res) => {
 
-    // UPDATE route (PUT = read + create logic)
-    appExpress.put('/notes/:id', (req, res) => {
-        const id = req.params.id;
-        const details = { '_id': new ObjectID(id) };
-        const note = { text: req.body.body, title: req.body.title };
+        const bd_id = req.body._id;
+        
+        const details = { '_id': new ObjectID(bd_id) };
+        const note = { text: req.body.text, title: req.body.title };
 
         db.collection('notes').update(details, note, (err, result) => {
             if (err) {
@@ -62,9 +72,8 @@ module.exports = function(appExpress, db) {
         });
     });
 
-
     // DELETE route
-    appExpress.delete('/notes/:id', (req, res) => {
+    appExpress.delete('/delete-note/:id', (req, res) => {
         const id = req.params.id;
         const details = { '_id': new ObjectID(id) };
 
