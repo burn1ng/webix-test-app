@@ -7,9 +7,14 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/burn1ng/webix-test-app.git"
+  },
   "keywords": [
     "webix"
   ],
+  "license": "ISC",
   "devDependencies": {
     "bower": "^1.8.0",
     "event-stream": "^3.3.1",
@@ -28,8 +33,14 @@
     "nodemon": "^1.11.0"
   },
   "dependencies": {
+    "bcrypt-node": "^0.1.0",
     "body-parser": "^1.17.2",
+    "connect-flash": "^0.1.1",
     "express": "^4.15.3",
-    "mongodb": "^2.2.30"
+    "express-session": "^1.15.4",
+    "mongodb": "^2.2.30",
+    "mongoose": "^4.11.4",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0"
   }
 }

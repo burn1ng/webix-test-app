@@ -1,6 +1,8 @@
 const noteRoutes = require('./note_routes');
+const passportRoutes = require('./passport_routes');
 
-module.exports = function(appExpress, db) {
+module.exports = function(appExpress, db, passport) {
   noteRoutes(appExpress, db);
-  // Тут, позже, будут и другие обработчики маршрутов 
+  // here will be other route handlers
+  passportRoutes(appExpress, db, passport);
 };
